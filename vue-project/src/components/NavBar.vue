@@ -5,14 +5,14 @@
                 <div class="navbar-item is-size-4 is-family-monospace">
                     UMaSebenta
                 </div>
-                <a @click.prevent="$event =>" class="navbar-burger" :class="" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <a @click.prevent="$event => showMobileNav = !showMobileNav" class="navbar-burger" :class="{ 'is-active' : showMobileNav}" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-            <div id="navbarBasicExample" class="navbar-menu" >
-                <div class="navbar-menu">
+            <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active' : showMobileNav}">
+                <div class="navbar-end">
                     <RouterLink class="navbar-item" active-class="is-active" to="/">Apontamentos</RouterLink>
                     <RouterLink class="navbar-item" active-class="is-active" to="/stats">Estatísticas</RouterLink>
                 </div>
@@ -20,3 +20,20 @@
         </div>
     </nav>
 </template>
+
+<script setup>
+
+ import { ref } from 'vue'
+ const showMobileNav = ref(false)
+
+</script>
+
+<style>
+@media (max-width: 1023px) {
+    .navbar-menu {
+        position: absolute;
+        left: 0;
+        width: 100%;
+    }
+}
+</style>
